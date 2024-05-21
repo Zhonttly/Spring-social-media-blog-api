@@ -35,6 +35,6 @@ public class AccountService {
         System.out.println("*****INSIDE MY SERVICE METHOD*******");
         Account newAccount = account;
 
-        return accountRepository.save(account);
+        return accountRepository.save(newAccount);
     }
 }

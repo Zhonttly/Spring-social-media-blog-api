@@ -26,7 +26,7 @@ public class SocialMediaController {
     @GetMapping("/register/")
     public Account postAccount(@RequestBody Account account){
         System.out.println("*********INSIDE MY POST METHOD*********");
-        return account;
+        return accountService.addAccount(account);
     }
     // 2. post account to login
 
