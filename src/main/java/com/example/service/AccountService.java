@@ -4,6 +4,7 @@ import com.example.entity.Account;
 import com.example.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.hibernate.annotations.Generated;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import java.util.Optional;
  */
 @Service
 public class AccountService {
+
     AccountRepository accountRepository;
 
     @Autowired 
@@ -32,9 +34,32 @@ public class AccountService {
      * @return the account if successfully added, null if otherwise
      */
     public Account addAccount(Account account) {
-        System.out.println("*****INSIDE MY SERVICE METHOD*******");
-        Account newAccount = account;
+        if(account.getPassword().length() >= 4 && account.getUsername().length() > 0) {
+            return accountRepository.save(account);
+        }
+        
+        return null;
+    }
 
-        return accountRepository.save(newAccount);
+    /**
+     * Checks if the account username and password match an existing 
+     * pair within the database
+     * 
+     * @param account Account to validate
+     * @return the account if pair matches, null otherwise
+     */
+    public Account validateAccount(Account account) {
+
+        Account validateAccount = accountRepository.findAccountByUsername(account.getUsername());
+
+        //Check if username exists
+        if(validateAccount != null) {
+            //Check if given password matches password within database
+            if(validateAccount.getPassword().equals(account.getPassword())) {
+                return validateAccount;
+            }
+        }
+
+        return null;
     }
 }

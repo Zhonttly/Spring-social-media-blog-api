@@ -1,6 +1,8 @@
 package com.example.entity;
 
 import javax.persistence.*;
+import org.hibernate.annotations.Generated;
+
 
 /**
  * This is a class that models an Account.
@@ -103,7 +105,7 @@ public class Account {
      * @return true if o is equal to this object.
      */
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) { 
 		if (this == obj)
 			return true;
 		if (obj == null)
