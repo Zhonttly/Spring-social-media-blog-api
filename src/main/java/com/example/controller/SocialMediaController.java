@@ -70,7 +70,7 @@ public class SocialMediaController {
     /**
      * Validate the account credentials to the login endpoint
      * 
-     * @param account account to verify
+     * @param account account to verify 
      * @return The account with account id if successfully verified, Http response of 401 otherwise 
      */
     @PostMapping("/login")
